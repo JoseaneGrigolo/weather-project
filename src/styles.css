@@ -87,3 +87,8 @@ footer {
   font-size: 14px;
   font-family: monospace;
 }
+.open-source {
+  display: block;
+  font-family: monospace;
+  text-align: center;
+}
