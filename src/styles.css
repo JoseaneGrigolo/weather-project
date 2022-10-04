@@ -1,0 +1,89 @@
+.container {
+  max-width: 630px;
+  box-shadow: rgba(102, 102, 105, 0.18) 5px 6px 7px 0;
+}
+
+/* Header */
+.logo {
+  max-width: 70px;
+}
+.alert-for {
+  font-size: 14px;
+  font-family: monospace;
+}
+.btn-close {
+  height: 1px;
+  width: 2px;
+}
+.time {
+  text-align: right;
+  font-size: 20px;
+  font-family: monospace;
+}
+
+/* Body */
+.list-cities {
+  list-style: none;
+  font-family: monospace;
+}
+.list-city {
+  display: inline;
+  margin-right: 25px;
+  font-size: 18px;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  opacity: 0.7;
+}
+.today-celsius {
+  font-size: 60px;
+  font-family: monospace;
+  border: none;
+  width: 70px;
+}
+.celsius {
+  font-size: 18px;
+  font-family: monospace;
+  border: none;
+  background: #fff;
+  color: #007bff;
+}
+.celsius:hover {
+  background: linear-gradient(#c7d4ed, #007bff);
+  border-radius: 5px;
+  color: white;
+}
+.cloud {
+  font-size: 25px;
+}
+.rating > input {
+  display: none;
+}
+.rating > label {
+  cursor: pointer;
+}
+.form-check-label {
+  font-size: 20px;
+}
+.prevision {
+  text-align: center;
+}
+.font-size {
+  font-size: 22px;
+  font-family: monospace;
+}
+.size {
+  font-size: 22px;
+}
+.font {
+  font-family: monospace;
+}
+
+/* Footer */
+footer {
+  font-size: 14px;
+  font-family: monospace;
+}

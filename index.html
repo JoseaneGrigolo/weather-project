@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/34f32b53a7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>The Weather by Joseane ❄️</title>
+</head>
+
+<body class="p-4" onload="startTime()">
+
+    <div class="container border border-2 border-secondary rounded">
+
+        <header>
+            <div class="row border-bottom border-2 border-secondary">
+                <div class="col-3 p-0"> <a href="index.html">
+                        <img class="logo m-1" src="images/logo.png" alt="logo weather" /></a>
+                </div>
+
+
+                <div class="col-6 p-0">
+                    <div class="alert alert-danger alert-dismissible fade show mt-3 p-2 fw-semibold" role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" fill="currentColor"
+                            class="bi bi-exclamation-triangle" viewBox="1 1 16 16">
+                            <path
+                                d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                            <path
+                                d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                        </svg>
+                        <span class="text-danger alert-for">Alert for thunderstorms</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="col-3 p-1">
+                    <div class="time text-secondary m-1 pt-3 fw-bold" id="clock"></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="row">
+            <div class="col-12 p-1">
+                <ul class="list-cities p-1 mb-0 fw-semibold">
+                    <li class="list-city"><a class="text-primary" href="https://en.wikipedia.org/wiki/Paris"
+                            target="_blank">Paris</a>
+                    </li>
+                    <li class="list-city"><a class="text-primary" href="https://en.wikipedia.org/wiki/Los_Angeles"
+                            target="_blank">Los
+                            Angeles</a></li>
+                    <li class="list-city"><a class="text-primary" href="https://en.wikipedia.org/wiki/London"
+                            target="_blank">London</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control font" id="search-city" placeholder="Search for a city"
+                        aria-label="Search and current location">
+                    <button id="submit-city" class="btn btn-outline-primary border border-primary border-2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button id="currenty-location" class="btn btn-outline-primary border border-primary border-2 font">
+                        <i class="fa-solid fa-location-dot"></i> Current
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-2 prevision">
+            <div class="col-6 p-1">
+                <h1 class="text-secondary font" id="current-city">Porto Alegre</h1>
+
+                <div class="row p-0">
+                    <div class="col-1"></div>
+                    <div class="col-3 text-primary fw-bold p-0 m-0">
+                        <p class="pt-3 m-0 font" id="today"></p>
+                        <p class="p-0 m-0 cloud">☁️</p>
+                    </div>
+                    <div class="col-3 text-secondary">
+                        <output type="text" class="today-celsius" id="temperature-change">21</output>
+                    </div>
+                    <div class="col-4">
+                        <button class="celsius fw-bold mt-3" id="button-celsius">°C</button>
+                        <button class="celsius fw-bold mt-3" id="button-fahrenheit">°F</button>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+
+                <h5 class="text-primary fw-bold font" id="description">Mostly Cloud</h5>
+                <p class="p-0 m-0 text-secondary font">Precipitation: 67%</p>
+                <p class="p-0 m-0 text-secondary font">Wind: 7km/h</p>
+                <p class="pt-1 m-0 text-secondary fw-semibold font"> Rating the app</p>
+
+                <div class="form-check form-check-inline rating p-0 m-0 text-primary">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">☆</label>
+                </div>
+                <div class="form-check form-check-inline rating p-0 m-0 text-primary">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">☆</label>
+                </div>
+                <div class="form-check form-check-inline rating p-0 m-0 text-primary">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">☆</label>
+                </div>
+                <div class="form-check form-check-inline rating p-0 m-0 text-primary">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                    <label class="form-check-label" for="inlineCheckbox4">☆</label>
+                </div>
+                <div class="form-check form-check-inline rating p-0 m-0 text-primary">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5" disabled>
+                    <label class="form-check-label" for="inlineCheckbox5">☆</label>
+                </div>
+            </div>
+
+            <div class="col-6 border-bottom border-top border-2 border-secondary p-3">
+                <div class="row p-0">
+                    <div class="col-4 p-1 fw-bold text-primary font-size" id="weekDayList">
+                    </div>
+
+                    <div class="col-4 p-1 size" id="weatherList">
+                    </div>
+
+                    <div class="col-4 p-1 fw-bold font-size" id="tempList">
+                    </div>
+                </div>
+            </div>
+
+            <footer class="pt-3">
+                <span>The Weather by <a href="https://www.linkedin.com/in/joseane-ivelise-grigolo-863a1a35"
+                        target="_blank">Joseane
+                        Grigolo</a></span>
+            </footer>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="src/script.js"></script>
+</body>
+
+</html>
