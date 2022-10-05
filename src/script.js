@@ -83,6 +83,9 @@ let buttonF = document.querySelector("#button-fahrenheit");
 
 function changeFahrenheit(event) {
   event.preventDefault();
+  buttonF.classList.add("active");
+  buttonC.classList.remove("active");
+
   let fahrenheit = Math.round(celsiusGlobal * 1.8 + 32);
   temperature.innerHTML = fahrenheit;
 }
@@ -90,6 +93,8 @@ buttonF.addEventListener("click", changeFahrenheit);
 
 function changeCelsius(event) {
   event.preventDefault();
+  buttonF.classList.remove("active");
+  buttonC.classList.add("active");
   //let celsius = Math.round((temperature.value - 32) / 1.8);
   temperature.innerHTML = Math.round(celsiusGlobal);
 }

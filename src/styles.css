@@ -51,7 +51,7 @@ a:hover {
   background: #fff;
   color: #007bff;
 }
-.celsius:hover {
+.active {
   background: linear-gradient(#c7d4ed, #007bff);
   border-radius: 5px;
   color: white;
