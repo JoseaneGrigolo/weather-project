@@ -46,7 +46,7 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
+  celsiusGlobal = response.data.main.temp;
   let celsius = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temperature-change");
   temp.innerHTML = `${celsius}`;
@@ -76,21 +76,22 @@ let currentButton = document.querySelector("#currenty-location");
 currentButton.addEventListener("click", showCurrentLocation);
 
 /* Fahrenheit - Celsius */
+let celsiusGlobal = null;
 let temperature = document.querySelector("#temperature-change");
 let buttonC = document.querySelector("#button-celsius");
 let buttonF = document.querySelector("#button-fahrenheit");
 
 function changeFahrenheit(event) {
   event.preventDefault();
-  let fahrenheit = Math.round(temperature.value * 1.8 + 32);
+  let fahrenheit = Math.round(celsiusGlobal * 1.8 + 32);
   temperature.innerHTML = fahrenheit;
 }
 buttonF.addEventListener("click", changeFahrenheit);
 
 function changeCelsius(event) {
   event.preventDefault();
-  let celsius = Math.round((temperature.value - 32) / 1.8);
-  temperature.innerHTML = celsius;
+  //let celsius = Math.round((temperature.value - 32) / 1.8);
+  temperature.innerHTML = Math.round(celsiusGlobal);
 }
 buttonC.addEventListener("click", changeCelsius);
 
