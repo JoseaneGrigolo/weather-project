@@ -31,6 +31,7 @@ function checkTime(i) {
 let apiKey = "52e34c3750a0a87a4e68575b57b95041";
 
 function showTemperature(response) {
+  console.log(response.data.weather[0].main);
   let city = document.querySelector("#current-city");
   city.innerHTML = response.data.name;
   let weatherDescription = document.querySelector("#description");
@@ -39,6 +40,11 @@ function showTemperature(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+
+  let alert = document.querySelector("#weather-main");
+  let weather = response.data.weather[0].main;
+  alert.innerHTML = weather.toUpperCase();
+
   let iconElement = document.querySelector("#icon");
 
   iconElement.setAttribute(
