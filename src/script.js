@@ -31,7 +31,6 @@ function checkTime(i) {
 let apiKey = "52e34c3750a0a87a4e68575b57b95041";
 
 function showTemperature(response) {
-  console.log(response.data.weather[0].main);
   let city = document.querySelector("#current-city");
   city.innerHTML = response.data.name;
   let weatherDescription = document.querySelector("#description");
