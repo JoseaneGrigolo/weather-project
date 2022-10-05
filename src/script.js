@@ -12,6 +12,7 @@ function startTime() {
   let today = new Date();
   let h = today.getHours();
   let m = today.getMinutes();
+  h = checkTime(h);
   m = checkTime(m);
   document.querySelector("#clock").innerHTML = h + ":" + m;
   document.querySelector("#today").innerHTML = days[today.getDay()];
@@ -34,6 +35,17 @@ function showTemperature(response) {
   city.innerHTML = response.data.name;
   let weatherDescription = document.querySelector("#description");
   weatherDescription.innerHTML = response.data.weather[0].description;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = response.data.main.humidity;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  let iconElement = document.querySelector("#icon");
+
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
   let celsius = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temperature-change");

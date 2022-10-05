@@ -81,8 +81,11 @@
                 <div class="row p-0">
                     <div class="col-1"></div>
                     <div class="col-3 text-primary fw-bold p-0 m-0">
-                        <p class="pt-3 m-0 font" id="today"></p>
-                        <p class="p-0 m-0 cloud">☁️</p>
+                        <p class="pt-2 m-0 font" id="today"></p>
+                        <p class="p-0 m-0 cloud">
+                            <img width="50px" src="http://openweathermap.org/img/wn/04d@2x.png" alt="mostly cloud"
+                                id="icon">
+                        </p>
                     </div>
                     <div class="col-3 text-secondary">
                         <output type="text" class="today-celsius" id="temperature-change">21</output>
@@ -95,8 +98,8 @@
                 </div>
 
                 <h5 class="text-primary fw-bold font" id="description">Mostly Cloud</h5>
-                <p class="p-0 m-0 text-secondary font">Precipitation: 67%</p>
-                <p class="p-0 m-0 text-secondary font">Wind: 7km/h</p>
+                <p class="p-0 m-0 text-secondary font">Precipitation: <span id="humidity">67</span>%</p>
+                <p class="p-0 m-0 text-secondary font">Wind: <span id="wind">7</span>km/h</p>
                 <p class="pt-1 m-0 text-secondary fw-semibold font"> Rating the app</p>
 
                 <div class="form-check form-check-inline rating p-0 m-0 text-primary">
