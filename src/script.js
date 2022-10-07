@@ -55,6 +55,8 @@ function showTemperature(response) {
   let celsius = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temperature-change");
   temp.innerHTML = `${celsius}`;
+
+  getForecast(response.data.coord);
 }
 
 function cityName(event) {
@@ -64,7 +66,6 @@ function cityName(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input2}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showTemperature);
 }
-
 let button = document.querySelector("#submit-city");
 button.addEventListener("click", cityName);
 
@@ -79,6 +80,13 @@ function showCurrentLocation() {
 }
 let currentButton = document.querySelector("#currenty-location");
 currentButton.addEventListener("click", showCurrentLocation);
+
+//Porto Alegre as Default;
+function defaultCity(city) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(showTemperature);
+}
+defaultCity("Porto Alegre");
 
 /* Fahrenheit - Celsius */
 let celsiusGlobal = null;
@@ -105,47 +113,50 @@ function changeCelsius(event) {
 }
 buttonC.addEventListener("click", changeCelsius);
 
-/* Working on it...*/
-function updateTemperature() {
-  let weekDay = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-  ];
-  let weather = ["🌧", "⛅️", "☔️", "🌧", "⛅️"];
-  let today = new Date();
-  let weekDayList = document.querySelector("#weekDayList");
-  let weatherList = document.querySelector("#weatherList");
-  let tempList = document.querySelector("#tempList");
-
-  let count = 1;
-  for (let i = 1; i < 6; i++) {
-    let item = document.createElement("p");
-    item.appendChild(
-      document.createTextNode(weekDay[today.getDay() + count++])
-    );
-    weekDayList.appendChild(item);
-  }
-  for (let i = 0; i < weather.length; i++) {
-    let item = document.createElement("p");
-    item.appendChild(document.createTextNode(weather[i]));
-    weatherList.appendChild(item);
-  }
-  for (let i = 0; i < 5; i++) {
-    let item = document.createElement("p");
-    item.appendChild(
-      document.createTextNode(Math.round(Math.random() * (35 - 1) + 1) + "°")
-    );
-    tempList.appendChild(item);
-  }
+/* Forecast...*/
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
 }
-updateTemperature();
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHtml = "";
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHtml =
+        forecastHtml +
+        `
+  <div class="row p-0">   
+    <div class="col-4 p-1 weather-forecast-date fw-bold text-primary font-size">${formatDay(
+      forecastDay.dt
+    )}
+    </div>   
+    <div class="col-4 p-0"><img src="http://openweathermap.org/img/wn/${
+      forecastDay.weather[0].icon
+    }@2x.png" alt="" width="46" />
+    </div>   
+    <div class="col-4 p-2 weather-forecast-temperatures font">
+       <span class="weather-forecast-temperature-max fw-bold text-secondary">${Math.round(
+         forecastDay.temp.max
+       )}° |</span> 
+       <span class="weather-forecast-temperature-min text-secondary">${Math.round(
+         forecastDay.temp.min
+       )}° </span>
+    </div>  
+  </div>
+  `;
+    }
+  });
+  forecastElement.innerHTML = forecastHtml;
+}
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let newApi = "1d038ee28ef2727a9f0310860ac10ae9";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${newApi}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}

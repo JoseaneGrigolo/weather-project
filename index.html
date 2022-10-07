@@ -33,7 +33,7 @@
                             <path
                                 d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
                         </svg>
-                        <span class="text-primary alert-for"><span id="weather-main">CLEAR</span>
+                        <span class="text-primary alert-for"><span id="weather-main"></span>
                             WEATHER</span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -77,19 +77,18 @@
 
         <div class="row p-2 prevision">
             <div class="col-6 p-1">
-                <h1 class="text-secondary font" id="current-city">Porto Alegre</h1>
+                <h1 class="text-secondary font" id="current-city"></h1>
 
                 <div class="row p-0">
                     <div class="col-1"></div>
                     <div class="col-3 text-primary fw-bold p-0 m-0">
                         <p class="pt-2 m-0 font" id="today"></p>
-                        <p class="p-0 m-0 cloud">
-                            <img width="50px" src="http://openweathermap.org/img/wn/04d@2x.png" alt="mostly cloud"
-                                id="icon">
+                        <p class="p-0 m-0">
+                            <img width="50px" id="icon">
                         </p>
                     </div>
                     <div class="col-3 text-secondary">
-                        <output type="text" class="today-celsius" id="temperature-change">0</output>
+                        <output type="text" class="today-celsius" id="temperature-change"></output>
                     </div>
                     <div class="col-4">
                         <button class="celsius fw-bold mt-3 active" id="button-celsius">°C</button>
@@ -98,9 +97,9 @@
                     <div class="col-1"></div>
                 </div>
 
-                <h5 class="text-primary fw-bold font" id="description">Mostly Cloud</h5>
-                <p class="p-0 m-0 text-secondary font">Humidity: <span id="humidity">67</span>%</p>
-                <p class="p-0 m-0 text-secondary font">Wind: <span id="wind">7</span>km/h</p>
+                <h5 class="text-primary fw-bold font" id="description"></h5>
+                <p class="p-0 m-0 text-secondary font">Humidity: <span id="humidity"></span>%</p>
+                <p class="p-0 m-0 text-secondary font">Wind: <span id="wind"></span>km/h</p>
                 <p class="pt-1 m-0 text-secondary fw-semibold font"> Rating the app</p>
 
                 <div class="form-check form-check-inline rating p-0 m-0 text-primary">
@@ -124,18 +123,9 @@
                     <label class="form-check-label" for="inlineCheckbox5">☆</label>
                 </div>
             </div>
+            <!--FORECAST-->
+            <div class="col-6 border-bottom border-top border-2 border-secondary p-3" id="forecast">
 
-            <div class="col-6 border-bottom border-top border-2 border-secondary p-3">
-                <div class="row p-0">
-                    <div class="col-4 p-1 fw-bold text-primary font-size" id="weekDayList">
-                    </div>
-
-                    <div class="col-4 p-1 size" id="weatherList">
-                    </div>
-
-                    <div class="col-4 p-1 fw-bold font-size" id="tempList">
-                    </div>
-                </div>
             </div>
 
             <footer class="pt-3">

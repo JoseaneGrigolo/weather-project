@@ -56,9 +56,6 @@ a:hover {
   border-radius: 5px;
   color: white;
 }
-.cloud {
-  font-size: 25px;
-}
 .rating > input {
   display: none;
 }
@@ -71,14 +68,13 @@ a:hover {
 .prevision {
   text-align: center;
 }
-.font-size {
-  font-size: 22px;
+.font {
   font-family: monospace;
 }
-.size {
+
+/*FORECAST*/
+.font-size {
   font-size: 22px;
-}
-.font {
   font-family: monospace;
 }
 
