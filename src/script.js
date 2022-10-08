@@ -108,12 +108,11 @@ function changeCelsius(event) {
   event.preventDefault();
   buttonF.classList.remove("active");
   buttonC.classList.add("active");
-  //let celsius = Math.round((temperature.value - 32) / 1.8);
   temperature.innerHTML = Math.round(celsiusGlobal);
 }
 buttonC.addEventListener("click", changeCelsius);
 
-/* Forecast...*/
+/* Forecast*/
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -136,11 +135,11 @@ function displayForecast(response) {
       forecastDay.dt
     )}
     </div>   
-    <div class="col-4 p-0"><img src="http://openweathermap.org/img/wn/${
+    <div class="col-2 p-0"><img src="http://openweathermap.org/img/wn/${
       forecastDay.weather[0].icon
     }@2x.png" alt="" width="46" />
     </div>   
-    <div class="col-4 p-2 weather-forecast-temperatures font">
+    <div class="col-6 p-2 weather-forecast-temperatures font">
        <span class="weather-forecast-temperature-max fw-bold text-secondary">${Math.round(
          forecastDay.temp.max
        )}° |</span> 
@@ -155,7 +154,6 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHtml;
 }
 function getForecast(coordinates) {
-  console.log(coordinates);
   let newApi = "1d038ee28ef2727a9f0310860ac10ae9";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${newApi}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
