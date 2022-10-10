@@ -29,6 +29,8 @@ function checkTime(i) {
 
 /* Change city */
 let apiKey = "52e34c3750a0a87a4e68575b57b95041";
+let buttonC = document.querySelector("#button-celsius");
+let buttonF = document.querySelector("#button-fahrenheit");
 
 function showTemperature(response) {
   let city = document.querySelector("#current-city");
@@ -55,6 +57,9 @@ function showTemperature(response) {
   let celsius = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temperature-change");
   temp.innerHTML = `${celsius}`;
+
+  buttonC.classList.add("active");
+  buttonF.classList.remove("active");
 
   getForecast(response.data.coord);
 }
@@ -91,8 +96,6 @@ defaultCity("Porto Alegre");
 /* Fahrenheit - Celsius */
 let celsiusGlobal = null;
 let temperature = document.querySelector("#temperature-change");
-let buttonC = document.querySelector("#button-celsius");
-let buttonF = document.querySelector("#button-fahrenheit");
 
 function changeFahrenheit(event) {
   event.preventDefault();
