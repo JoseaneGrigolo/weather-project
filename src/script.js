@@ -64,7 +64,7 @@ function cityName(event) {
   let input = document.querySelector("#search-city");
   let input2 = input.value.trim();
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input2}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showTemperature);
+  defaultCity(input2);
 }
 let button = document.querySelector("#submit-city");
 button.addEventListener("click", cityName);
